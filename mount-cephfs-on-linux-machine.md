@@ -39,18 +39,21 @@
 1. 确认kernel 加载 ceph 模块
 
     ```
+    $ sudo modprobe ceph
     $ lsmod | grep ceph
     ceph                  305045  1
     libceph               244999  2 rbd,ceph
     dns_resolver           13140  2 nfsv4,libceph
     libcrc32c              12644  3 xfs,libceph,dm_persistent_data
     ```
+    不同操作系统输出略有不同。
+
 
 1. 创建目录，挂载，Ceph MON 的IP, 以cephx 验证的方式挂载，name 为 admin， 秘钥
 
    ```
    # mkdir /mnt/cephfs
-   #  mount -t ceph 10.10.10.201:6789:/ /mnt/cephfs -o name=admin,secret=AQCeqZFXl96IFhAAWfONQRkve0PALi4meb5ICw==
+   # mount -t ceph 10.10.10.201:6789:/ /mnt/cephfs -o name=admin,secret=AQCeqZFXl96IFhAAWfONQRkve0PALi4meb5ICw==
    # df -h
    Filesystem          Size  Used Avail Use% Mounted on
    /dev/sda5           101G  9.4G   91G  10% /
